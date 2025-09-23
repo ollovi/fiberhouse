@@ -243,11 +243,14 @@ cat README_go_build.md
 # 退回到应用根目录（默认工作目录），在工作目录下执行以下命令，构建应用
 # 当前工作目录为 fiberhouse/，构建产物输出到 example_main/target/ 目录
 cd ..
+# windows环境构建产物保留.exe后缀，linux环境无需保留后缀
 go build "-ldflags=-X 'main.Version=v0.0.1'" -o ./example_main/target/examplewebserver.exe ./example_main/main.go
 
 # 运行应用
 # 退回到应用根目录（默认工作目录），在工作目录下执行以下命令，启动应用
 ./example_main/target/examplewebserver.exe
+# or Linux、 MacOS
+./example_main/target/examplewebserver
 ```
 
 访问hello world接口： http://127.0.0.1:8080/example/hello/world
@@ -266,7 +269,7 @@ curl -sL  "http://127.0.0.1:8080/example/hello/world"
 }
 ```
 
-- Cmd框架快速体验
+- Cmd应用快速体验
 
 ```bash
 
@@ -292,13 +295,26 @@ cd example_application/command/
 cat README_go_build.md
 
 # 当前工作目录： command/
+# windows环境构建产物保留.exe后缀，Linux or MacOS环境无需保留后缀
 go build -o ./target/cmdstarter.exe ./main.go 
+
+# 设置cmd应用的环境变量，windows环境，将读取application_cmd_dev.yml配置文件
+set APP_ENV_application_appType=cmd
+set APP_ENV_application_env=dev
+
+# Linux or MacOS 环境
+# export APP_ENV_application_appType=cmd
+# export APP_ENV_application_env=dev
 
 # 执行cmd命令脚本，查看帮助
 ./target/cmdstarter.exe -h 
+# or 
+./target/cmdstarter -h
 
 # 执行子命令，查看控制台日志输出
 ./target/cmdstarter.exe test-orm -m ok
+# or 
+./target/cmdstarter test-orm -m ok
 
 # 控制台输出 ok
 # result:  ExampleMysqlService.TestOK: OK --from: ok

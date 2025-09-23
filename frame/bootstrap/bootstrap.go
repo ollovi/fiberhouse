@@ -218,25 +218,23 @@ func NewConfigOnce(path ...string) appconfig.IAppConfig {
 			return aConf
 		})
 		// 选择环境类型 prod dev test
-		envSelect := aCfg.String("application.env", "")
+		envSelect := aCfg.String("application.env", defaultEnv) // 默认 dev
 		// 选择应用类别 web、cmd，默认web
-		appType := aCfg.String("application.appType", envAppTypeWeb)
+		appType := aCfg.String("application.appType", envAppTypeWeb) // 默认 web
 		// 此处限制应用类别的代码已注释。逻辑保留为“不限制应用类别”，由开发者自行决定和维护
 		//if slices.Contains[[]string, string]([]string{envAppTypeWeb, envAppTypeCmd}, appType) {
-		//	appType += "_"
+		//	// 合法的应用类别
 		//}
-		appType += "_"
-		var confFilename string
-		if envSelect != "" {
-			confFilename = "application_" + appType + envSelect + ".yml" // 比如： appType=cmd, env=test ==> 配置文件名为 application_cmd_test.yml
-		} else {
-			confFilename = defaultAppConfigFile
-			// 设置应用环境配置项
-			_ = aCfg.GetKOANF().Set("application.env", defaultEnv)
-		}
+		confFilename := "application_" + appType + "_" + envSelect + ".yml" // 比如： appType=cmd, env=test ==> 配置文件名为 application_cmd_test.yml
 
 		// 加载文件配置
 		aCfg.LoadYaml(confFilename)
+
+		// 回写选择的环境类型和应用类别到配置中
+		aCfg.LoadDefault(map[string]interface{}{
+			"application.env":     envSelect,
+			"application.appType": appType,
+		})
 
 		// 加载配置参数环境变量： 前缀 APP_CONF_ ； e.g. APP_CONF_application_appName=xxx ==> application.appName = xxx
 		// 注意: APP_CONF_ 为大写，application_appName跟yml文件配置的application.appName对应，且必须大小写保持一致

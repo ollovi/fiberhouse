@@ -219,6 +219,8 @@ func main() {
 
 ### Quick Try
 
+- Quick Web Application Experience
+
 ```bash
 # Clone the framework
 git clone https://github.com/lamxy/fiberhouse.git
@@ -239,11 +241,14 @@ cat README_go_build.md
 # Return to application root directory (default working directory), execute the following command in working directory to build application
 # Current working directory is fiberhouse/, build output to example_main/target/ directory
 cd ..
+# On Windows, the build output keeps the .exe suffix; on Linux, no suffix is needed.
 go build "-ldflags=-X 'main.Version=v0.0.1'" -o ./example_main/target/examplewebserver.exe ./example_main/main.go
 
 # Run application
 # Return to application root directory (default working directory), execute the following command in working directory to start application
 ./example_main/target/examplewebserver.exe
+# or Linux, MacOS
+./example_main/target/examplewebserver
 ```
 
 Visit the hello world endpoint: http://127.0.0.1:8080/example/hello/world
@@ -259,6 +264,58 @@ curl -sL "http://127.0.0.1:8080/example/hello/world"
     "msg": "ok",
     "data": "Hello World!"
 }
+```
+
+- Quick CMD Application Experience
+
+```bash
+
+# MySQL database preparation
+mysqlsh root:root@localhost:3306 
+
+# Create a test database
+CREATE DATABASE IF NOT EXISTS test CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+
+# Clone the framework
+git clone https://github.com/lamxy/fiberhouse.git
+
+# Enter the framework directory
+cd fiberhouse
+
+# Install dependencies
+go mod tidy
+
+# Enter example_application/command/
+cd example_application/command/
+
+# View README
+cat README_go_build.md
+
+# Current working directory: command/
+# On Windows, the build output keeps the .exe suffix; on Linux or MacOS, no suffix is needed.
+go build -o ./target/cmdstarter.exe ./main.go 
+
+# Set environment variables for the cmd application on Windows, will read the application_cmd_dev.yml configuration file
+set APP_ENV_application_appType=cmd
+set APP_ENV_application_env=dev
+
+# Linux or MacOS environment
+# export APP_ENV_application_appType=cmd
+# export APP_ENV_application_env=dev
+
+# Execute cmd command script, view help
+./target/cmdstarter.exe -h 
+# or 
+./target/cmdstarter -h
+
+# Execute subcommand, view console log output
+./target/cmdstarter.exe test-orm -m ok
+# or 
+./target/cmdstarter test-orm -m ok
+
+# Console output ok
+# result:  ExampleMysqlService.TestOK: OK --from: ok
+
 ```
 
 ## 📖 User Guide
