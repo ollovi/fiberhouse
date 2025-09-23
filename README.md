@@ -6,11 +6,11 @@
 <img src="https://img.shields.io/github/issues/lamxy/fiberhouse.svg" alt="GitHub Issues"></img>
 
 
-📖 [中文文档](README.md) | [English Documentation](./frame/docs/README_en.md)
+📖 [中文](README.md) | [English](./frame/docs/README_en.md)
 
 ## 🏠 关于 FiberHouse
 
-FiberHouse 是基于 Fiber 的高性能、可装配的 Go Web 框架，内置全局配置器、统一日志器、验证包装器以及数据库、缓存、中间件、统一异常处理等框架级组件，开箱即用。
+FiberHouse 是基于 Fiber 的高性能、可装配的 Go Web 框架，内置全局管理器、配置器、统一日志器、验证包装器以及数据库、缓存、中间件、统一异常处理等框架组件，开箱即用。
 
 - 提供了强大的全局管理容器，支持自定义组件一次注册到处使用的能力，方便开发者按需替换和功能扩展，
 - 在框架层面约定了应用启动器、全局上下文、业务分层等接口以及内置默认实现，支持自定义实现和模块化开发，
@@ -256,7 +256,7 @@ go build "-ldflags=-X 'main.Version=v0.0.1'" -o ./example_main/target/exampleweb
 
 ```bash
 
-curl "http://127.0.0.1:8080/example/hello/world"
+curl -sL  "http://127.0.0.1:8080/example/hello/world"
 
 # 响应:
 {
@@ -285,7 +285,7 @@ cd fiberhouse
 # 安装依赖
 go mod tidy
 
-# 进入example_main/
+# 进入example_application/command/
 cd example_application/command/
 
 # 查看README
@@ -298,7 +298,7 @@ go build -o ./target/cmdstarter.exe ./main.go
 ./target/cmdstarter.exe -h 
 
 # 执行子命令，查看控制台日志输出
-./target/cmdstarter.exe orm -m ok
+./target/cmdstarter.exe test-orm -m ok
 
 # 控制台输出 ok
 # result:  ExampleMysqlService.TestOK: OK --from: ok
@@ -744,6 +744,7 @@ func (m *ExampleModel) GetExampleByID(ctx context.Context, oid string) (*entity.
   - 仓储层: ExampleRepository.GetExampleById -> r.Model.GetExampleByID
   - 模型层: ExampleModel.GetExampleByID -> m.GetCollection(m.GetColl()).FindOne(...)
   - 实体层: entity.Example
+  - 响应层: e.g. response.RespSuccess(resp).JsonWithCtx(c) -> response.RespInfo
 
 ### 如何添加新的模块和新的api
 - 参考样例: [example_application/module/example-module](./example_application/module/example-module)

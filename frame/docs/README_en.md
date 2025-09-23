@@ -4,11 +4,11 @@
 [![Fiber Version](https://img.shields.io/badge/fiber-v2.x-green.svg)](https://github.com/gofiber/fiber)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](../../LICENSE)
 
-📖 [English Documentation](README_en.md) | [中文文档](../../README.md)
+📖 English | [中文](../../README.md)
 
 ## 🏠 About FiberHouse
 
-FiberHouse is a high-performance, composable Go web framework built on Fiber, featuring a global configurator, unified logger, validation wrapper, and framework-level components including database, cache, middleware, and unified exception handling out of the box.
+FiberHouse is a high-performance, composable Go web framework built on Fiber, featuring a global manager, configurator, unified logger, validation wrapper, and framework-level components including database, cache, middleware, and unified exception handling out of the box.
 
 - Provides a powerful global management container that supports one-time registration and reuse of custom components everywhere, enabling easy replacement and feature extension.
 - Defines standardized interfaces for application starters, global context, and layered architecture with built-in default implementations that support custom implementation and modular development.
@@ -152,7 +152,7 @@ frame/                              # FiberHouse Framework Core
 
 ### Starting Database and Cache Containers with Docker for Framework Debugging
 
-- Docker compose file: [docker-compose.yml](./frame/docs/docker_compose_db_redis_yaml/docker-compose.yml)
+- Docker compose file: [docker-compose.yml](./docker_compose_db_redis_yaml/docker-compose.yml)
 - Start command: `docker compose up -d`
 
 ```bash
@@ -178,7 +178,7 @@ go get github.com/lamxy/fiberhouse
 
 ### Main File Example
 
-Reference example: [example_main/main.go](./example_main/main.go)
+Reference example: [example_main/main.go](../../example_main/main.go)
 
 ```go
 package main
@@ -251,7 +251,7 @@ Visit the hello world endpoint: http://127.0.0.1:8080/example/hello/world
 You will receive the response: {"code":0,"msg":"ok","data":"Hello World!"}
 
 ```bash
-curl --location 'http://127.0.0.1:8080/example/hello/world' --header 'Content-Type: application/json'
+curl -sL "http://127.0.0.1:8080/example/hello/world"
 
 # Response:
 {
@@ -398,14 +398,14 @@ example_application/                    # Example application root directory
     - google wire: Dependency injection code generation tool, official site [https://github.com/google/wire](https://github.com/google/wire)
     - uber dig: Dependency injection container, recommended for use only during application startup phase, official site [https://github.com/uber-go/dig](https://github.com/uber-go/dig)
 - Google wire usage instructions and examples, refer to:
-    - [example_application/module/example-module/api/api_provider.go](./example_application/module/example-module/api/api_provider.go)
-    - [example_application/module/example-module/api/README_wire_gen.md](./example_application/module/example-module/api/README_wire_gen.md)
+    - [example_application/module/example-module/api/api_provider.go](../../example_application/module/example-module/api/api_provider.go)
+    - [example_application/module/example-module/api/README_wire_gen.md](../../example_application/module/example-module/api/README_wire_gen.md)
 - Uber dig usage instructions and examples, refer to:
-    - [frame/component/dig_container.go](./frame/component/dig_container.go)
+    - [frame/component/dig_container.go](../component/dig_container.go)
 
 ### Implementing Dependency Resolution without Dependency Injection Tools through Framework's Global Manager
 
-- See route registration example: [example_application/module/example-module/api/register_api_router.go](./example_application/module/example-module/api/register_api_router.go)
+- See route registration example: [example_application/module/example-module/api/register_api_router.go](../../example_application/module/example-module/api/register_api_router.go)
 
 ```go
 func RegisterRouteHandlers(ctx frame.ContextFramer, app fiber.Router) {
@@ -427,7 +427,7 @@ func RegisterRouteHandlers(ctx frame.ContextFramer, app fiber.Router) {
 }
 ```
 
-- See CommonHandler implementing service component access without prior dependency injection through global manager: [example_application/module/example-module/api/common_api.go](./example_application/module/example-module/api/common_api.go)
+- See CommonHandler implementing service component access without prior dependency injection through global manager: [example_application/module/example-module/api/common_api.go](../../example_application/module/example-module/api/common_api.go)
 
 ```go
 // CommonHandler Example common handler, inherits from frame.ApiLocator, providing capabilities to get context, config, logger, registered instances etc.
@@ -467,7 +467,7 @@ func (h *CommonHandler) TestGetInstance(c *fiber.Ctx) error {
 
 ### Example CRUD API Implementation
 
-- Define entity types: See [example_application/module/example-module/entity/types.go](./example_application/module/example-module/entity/types.go)
+- Define entity types: See [example_application/module/example-module/entity/types.go](../../example_application/module/example-module/entity/types.go)
 
 ```go
 // Example
@@ -481,7 +481,7 @@ type Example struct {
 }
 ```
 
-- Route registration: See [example_application/module/example-module/api/register_api_router.go](./example_application/module/example-module/api/register_api_router.go)
+- Route registration: See [example_application/module/example-module/api/register_api_router.go](../../example_application/module/example-module/api/register_api_router.go)
 
 ```go
 func RegisterRouteHandlers(ctx frame.ContextFramer, app fiber.Router) {
@@ -503,7 +503,7 @@ func RegisterRouteHandlers(ctx frame.ContextFramer, app fiber.Router) {
 }
 ```
 
-- Define example API handler: See [example_application/module/example-module/api/example_api.go](./example_application/module/example-module/api/example_api.go)
+- Define example API handler: See [example_application/module/example-module/api/example_api.go](../../example_application/module/example-module/api/example_api.go)
 
 ```go
 // ExampleHandler Example handler, inherits from frame.ApiLocator, providing capabilities to get context, config, logger, registered instances etc.
@@ -559,7 +559,7 @@ func (h *ExampleHandler) GetExample(c *fiber.Ctx) error {
 }
 ```
 
-- Define example service: See [example_application/module/example-module/service/example_service.go](./example_application/module/example-module/service/example_service.go)
+- Define example service: See [example_application/module/example-module/service/example_service.go](../../example_application/module/example-module/service/example_service.go)
 
 ```go
 // ExampleService Example service, inherits frame.ServiceLocator service locator interface, providing capabilities to get context, config, logger, registered instances etc.
@@ -601,7 +601,7 @@ func (s *ExampleService) GetExample(id string) (*responsevo.ExampleRespVo, error
 }
 ```
 
-- Define example repository: See [example_application/module/example-module/repository/example_repository.go](./example_application/module/example-module/repository/example_repository.go)
+- Define example repository: See [example_application/module/example-module/repository/example_repository.go](../../example_application/module/example-module/repository/example_repository.go)
 
 ```go
 // ExampleRepository Example repository, responsible for Example business data persistence operations, inherits frame.RepositoryLocator repository locator interface, providing capabilities to get context, config, logger, registered instances etc.
@@ -645,7 +645,7 @@ func (r *ExampleRepository) GetExampleById(id string) (*entity.Example, error) {
 }
 ```
 
-- Define example model: See [example_application/module/example-module/model/example_model.go](./example_application/module/example-module/model/example_model.go)
+- Define example model: See [example_application/module/example-module/model/example_model.go](../../example_application/module/example-module/model/example_model.go)
 
 ```go
 // ExampleModel Example model, inherits MongoLocator locator interface, providing capabilities to get context, config, logger, registered instances etc. as well as basic mongodb operation capabilities
@@ -701,10 +701,11 @@ func (m *ExampleModel) GetExampleByID(ctx context.Context, oid string) (*entity.
     - Repository layer: ExampleRepository.GetExampleById -> r.Model.GetExampleByID
     - Model layer: ExampleModel.GetExampleByID -> m.GetCollection(m.GetColl()).FindOne(...)
     - Entity layer: entity.Example
+    - Response layer: e.g. response.RespSuccess(resp).JsonWithCtx(c) -> response.RespInfo
 
 ### How to Add New Modules and New APIs
 
-- Reference example: [example_application/module/example-module](./example_application/module/example-module)
+- Reference example: [example_application/module/example-module](../../example_application/module/example-module)
 
 - Copy example module directory: Copy from `example-module` directory as starting template for new module
 
@@ -739,7 +740,7 @@ wire gen -output_file_prefix api_provider_
 
 ### Task Async Task Usage Examples
 
-- Define unique task names: See [example_application/module/example-module/task/names.go](./example_application/module/example-module/task/names.go)
+- Define unique task names: See [example_application/module/example-module/task/names.go](../../example_application/module/example-module/task/names.go)
 
 ```go
 package task
@@ -751,7 +752,7 @@ const (
 )
 ```
 
-- Create new task: See [example_application/module/example-module/task/task.go](./example_application/module/example-module/task/task.go)
+- Create new task: See [example_application/module/example-module/task/task.go](../../example_application/module/example-module/task/task.go)
 
 ```go
 /*
@@ -781,7 +782,7 @@ func NewExampleCreateTask(ctx frame.IContext, age int8) (*asynq.Task, error) {
 }
 ```
 
-- Define task handler: See [example_application/module/example-module/task/handler/handle.go](./example_application/module/example-module/task/handler/handle.go)
+- Define task handler: See [example_application/module/example-module/task/handler/handle.go](../../example_application/module/example-module/task/handler/handle.go)
 
 ```go
 // HandleExampleCreateTask Example task creation handler
@@ -817,7 +818,7 @@ func HandleExampleCreateTask(ctx context.Context, t *asynq.Task) error {
 }
 ```
 
-- Task mounter: See [example_application/module/example-module/task/handler/mount.go](./example_application/module/example-module/task/handler/mount.go)
+- Task mounter: See [example_application/module/example-module/task/handler/mount.go](../../example_application/module/example-module/task/handler/mount.go)
 
 ```go
 package handler
@@ -841,8 +842,8 @@ func RegisterTaskHandlers(tk frame.TaskRegister) {
 }
 ```
 
-- Push task to queue: See [example_application/module/example-module/api/example_api.go](./example_application/module/example-module/api/example_api.go)
-  Calls GetExampleWithTaskDispatcher method in [example_application/module/example-module/service/example_service.go](./example_application/module/example-module/service/example_service.go)
+- Push task to queue: See [example_application/module/example-module/api/example_api.go](../../example_application/module/example-module/api/example_api.go)
+  Calls GetExampleWithTaskDispatcher method in [example_application/module/example-module/service/example_service.go](../../example_application/module/example-module/service/example_service.go)
 
 ```go
 // GetExampleWithTaskDispatcher Example method demonstrating how to use task dispatcher for async task execution in service methods
@@ -888,8 +889,8 @@ func (s *ExampleService) GetExampleWithTaskDispatcher(id string) (*responsevo.Ex
 
 ### Cache Component Usage Examples
 
-- See get example list endpoint: GetExamples method in [example_application/module/example-module/api/example_api.go](./example_application/module/example-module/api/example_api.go)
-  Calls GetExamplesWithCache method in example service: [example_application/module/example-module/service/example_service.go](./example_application/module/example-module/service/example_service.go)
+- See get example list endpoint: GetExamples method in [example_application/module/example-module/api/example_api.go](../../example_application/module/example-module/api/example_api.go)
+  Calls GetExamplesWithCache method in example service: [example_application/module/example-module/service/example_service.go](../../example_application/module/example-module/service/example_service.go)
 
 ```go
 func (s *ExampleService) GetExamples(page, size int) ([]responsevo.ExampleRespVo, error) {
@@ -931,7 +932,7 @@ func (s *ExampleService) GetExamples(page, size int) ([]responsevo.ExampleRespVo
 
 ### CMD Command Line Application Usage Examples
 
-- Command line framework application main entry: See [example_application/command/main.go](./example_application/command/main.go)
+- Command line framework application main entry: See [example_application/command/main.go](../../example_application/command/main.go)
 
 ```go
 package main
@@ -964,7 +965,7 @@ func main() {
 }
 ```
 
-- Write a command script: See [example_application/command/application/commands/test_orm_command.go](./example_application/command/application/commands/test_orm_command.go)
+- Write a command script: See [example_application/command/application/commands/test_orm_command.go](../../example_application/command/application/commands/test_orm_command.go)
 
 ```go
 // TestOrmCMD Test go-orm library CRUD operations command, needs to implement frame.CommandGetter interface, return command line command object through GetCommand method
@@ -1078,7 +1079,7 @@ func (m *TestOrmCMD) GetCommand() interface{} {
 }
 ```
 
-- Command line build: See [example_application/command/README_go_build.md](./example_application/command/README_go_build.md)
+- Command line build: See [example_application/command/README_go_build.md](../../example_application/command/README_go_build.md)
 
 ```bash
 # Build
@@ -1102,7 +1103,7 @@ cd command/    ## work dir is ~/command/, configure path base on it
 ### Application Global Configuration
 FiberHouse supports environment-based multi-configuration file management, with configuration files located in the `example_config/` directory. The global configuration object is located in the framework context object and can be accessed through the `ctx.GetConfig()` method.
 
-- Configuration file README: See [example_config/README.md](./example_config/README.md)
+- Configuration file README: See [example_config/README.md](../../example_config/README.md)
 
 - Configuration file naming convention
 
@@ -1239,8 +1240,8 @@ cache:
 - More configurations can be customized as needed
 
 - Complete configuration examples reference:
-    - Test environment configuration: [example_config/application_web_test.yml](./example_config/application_web_test.yml)
-    - Command line test environment configuration: [application_cmd_test.yml](./example_config/application_cmd_test.yml)
+    - Test environment configuration: [example_config/application_web_test.yml](../../example_config/application_web_test.yml)
+    - Command line test environment configuration: [application_cmd_test.yml](../../example_config/application_cmd_test.yml)
 
 ## 🤝 Contribution Guidelines
 

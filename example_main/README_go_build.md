@@ -11,7 +11,7 @@ go run /path/to/main.go
 ### go build
 ```shell
 cd PRD/   # Project ROOT Directory
-go build "-ldflags=-X 'main.Version=v0.0.1'" -o ./example_main/target/examplewebserver.exe -gcflags "all=-N -l" ./example_main/main.go
+go build "-ldflags=-X 'main.Version=v0.0.1'" -o ./example_main/target/examplewebserver.exe ./example_main/main.go
 ```
 
 ### exec
